@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat "python --version"
+                bat "python get_setup_names"
             }
         }
     }
-}
