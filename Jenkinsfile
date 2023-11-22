@@ -10,10 +10,6 @@ pipeline {
                     python get_setup_names.py
                 """
             }
-
-            steps{
-                
-            }
         }
     }
 }
