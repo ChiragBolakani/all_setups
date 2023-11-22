@@ -4,9 +4,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat "call %python_venv%"
-                bat "python hello.py"
-                bat "python get_setup_names.py"
+                bat """
+                    call %python_venv%
+                    python hello.py
+                    python get_setup_names.py
+                """
+            }
+
+            steps{
+                
             }
         }
     }
