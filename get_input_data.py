@@ -1,6 +1,8 @@
 import pandas as pd
 import re
 import numpy as np
+import csv
+import os
 
 def get_results_per_step(result_per_step, indicate_error=False):
     '''
@@ -43,20 +45,26 @@ def get_failure_reason(result_per_step):
                                     )
     return failure_reason
 
-
-df = pd.read_json("chn_vdsl_vplus_rani-f_failures_2022_sept.json")
-df
-
-setup_df = df.loc[(df["fr"]!="")]
+files = [f for f in os.listdir("setup_json_data")]
+# print(files)
 
 
-failed_mnemonics_list = []
-for steps in setup_df["result_per_step"]:
-    failed_mnemonics_list.append(",".join(get_failure_reason(steps)))
-    # chn_ndps_d_DF["failed_test_mnemonics"] = ",".join(get_failure_reason(steps))
-    
+for setup_json_file_name in files:
+    # print("reading..." + setup_json_file_name)
+    df = pd.read_json("setup_json_data/" + setup_json_file_name)
+    df
 
-setup_df["failed_test_mnemonics"] = failed_mnemonics_list
+    setup_df = df.loc[(df["fr"]!="")]
 
-processed_cleaned_setup_df = setup_df[["result_per_step", ""]]
+    failed_mnemonics_list = []
+    for steps in setup_df["result_per_step"]:
+        failed_mnemonics_list.append(",".join(get_failure_reason(steps)))
+        # chn_ndps_d_DF["failed_test_mnemonics"] = ",".join(get_failure_reason(steps))
+        
+    setup_df["failed_test_mnemonics"] = failed_mnemonics_list
+
+    processed_cleaned_setup_df = setup_df[["result_per_step", "mnemonic", "fr", "comments", "id", "failed_test_mnemonics"]]
+    # print(processed_cleaned_setup_df)
+
+    processed_cleaned_setup_df.to_pickle("setup_columns_extracted_data/" + setup_json_file_name.split(".")[0]+".pkl")
 
