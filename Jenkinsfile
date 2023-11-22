@@ -8,8 +8,10 @@ pipeline {
                     call %python_venv%
                     python hello.py
                     python get_setup_names.py
+                    python get_setup
+                    python get_setup_data_json.py
                 """
             }
         }
     }
-}
+} 
