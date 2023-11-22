@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat "python get_setup_names"
+                bat "call ml_venv/activate"
+                bat "python get_setup_names.py"
             }
         }
     }
