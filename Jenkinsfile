@@ -6,13 +6,14 @@ pipeline {
             steps {
                 bat """
                     call %python_venv%
-                    python hello.py
                     python get_setup_names.py
                     python get_setup_data_json.py
                     python get_input_data.py
                     python label_encoding.py
-                    python fit_model.py
+                    python fit_knn.py
                     python fit_dct.py
+                    python fit_svc.py
+                    python result_analysis.py
                     python empty_directory.py
                 """
             }
