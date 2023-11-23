@@ -50,5 +50,5 @@ ax.set_title('comparision of accuracy')
 ax.set_xticks(x + width, X)
 ax.legend(loc='upper left', ncols=3)
 ax.set_ylim(0, 1.2)
-plt.show()
+plt.savefig("accuracy_bar_plot.png")
 
