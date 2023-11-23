@@ -17,7 +17,7 @@ for pkl_file in pkl_files:
     le2.fit(setup_df["mnemonic"])
     setup_df["mnemonic_encoded"] = le2.transform(setup_df["mnemonic"])
 
-    setup_df.to_pickle("setup_data_column_encoded/" + "encoded_" + pkl_file.split(".")[0]+".pkl")
+    setup_df.to_pickle("setup_data_column_encoded/" + pkl_file.split(".")[0]+".pkl")
 
     # print(setup_df)
 
