@@ -19,3 +19,12 @@ os.mkdir("setup_data_column_encoded")
 shutil.rmtree("setup_json_data")
 os.mkdir("setup_json_data")
 
+if os.path.exists("accuracy_bar_plot.png"):
+    os.remove("accuracy_bar_plot.png")
+else:
+    pass
+
+if os.path.exists("setup.csv"):
+    os.remove("setup.csv")
+else:
+    pass
