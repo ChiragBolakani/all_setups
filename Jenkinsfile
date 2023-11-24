@@ -19,11 +19,6 @@ pipeline {
             }
         }
         stage('Test') {
-            agent{
-                node {
-                    currentBuild.description = ""
-                }
-            }
             steps {
                 bat """
                     call %python_venv%
