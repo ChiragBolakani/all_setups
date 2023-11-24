@@ -29,10 +29,12 @@ pipeline {
     }
     post {
         success{
-            agent{
-                node {
-                    currentBuild.description = '''<img src="%WORKSPACE%accuracy_bar_plot.png" alt="accuracy_bar_plot" width="500" height="600">'''
-                }
+            setps{
+                agent{
+                    node {
+                        currentBuild.description = '''<img src="%WORKSPACE%accuracy_bar_plot.png" alt="accuracy_bar_plot" width="500" height="600">'''
+                    }
+                }       
             }
         }
     }
