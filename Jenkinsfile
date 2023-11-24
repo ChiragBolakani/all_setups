@@ -32,7 +32,7 @@ pipeline {
             steps{
                 script{
                     currentBuild.description = '''<img src="%WORKSPACE%accuracy_bar_plot.png" alt="accuracy_bar_plot" width="500" height="600">'''
-                }       
+                } 
             }
         }
     }
