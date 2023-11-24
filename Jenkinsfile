@@ -19,11 +19,23 @@ pipeline {
             }
         }
         stage('Test') {
+            agent{
+                node {
+                    currentBuild.description = ""
+                }
+            }
             steps {
                 bat """
                     call %python_venv%
                     python result_analysis.py
                 """
+            }
+        }
+        post { 
+            agent{
+                node {
+                    currentBuild.description = '<img src="%WORKSPACE%/accuracy_bar_plot.png' alt="Girl in a jacket" width="500" height="600">"
+                }
             }
         }
     }
