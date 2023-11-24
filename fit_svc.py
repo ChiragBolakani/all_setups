@@ -7,7 +7,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import ShuffleSplit
 import os
-
+import pickle
 
 pkl_files = [f for f in os.listdir("setup_data_column_encoded")]
 accuracy_list = []
@@ -28,6 +28,10 @@ for pkl_file in pkl_files:
         accuracy_list.append(scores.mean())
         result_df = pd.DataFrame({"setup" : setup_list, "svc_accuracy" : accuracy_list})
         result_df.to_csv("results/" + "svc_results.csv")
+
+        with open("models/clf.pkl", "wb") as model_pickle_file:
+            pickle.dump(clf, model_pickle_file)
+            model_pickle_file.close()
         
     
     else:

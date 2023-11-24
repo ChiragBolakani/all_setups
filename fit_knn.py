@@ -1,3 +1,4 @@
+import pickle
 import numpy as np
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
@@ -26,6 +27,10 @@ for pkl_file in pkl_files:
         setup_list.append(pkl_file.split(".")[0])
         result_df = pd.DataFrame({"setup" : setup_list, "knn_accuracy" : accuracy_list})
         result_df.to_csv("results/" + "knn_results.csv")
+
+        with open("models/knn.pkl", "wb") as model_pickle_file:
+            pickle.dump(knn, model_pickle_file)
+            model_pickle_file.close()
     
     else:
         continue
